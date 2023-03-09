@@ -4,11 +4,31 @@
       #clock {
         font-size: 180;
         font-weight: bold;
+        text-align: center;
+        margin-top: 10vh;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      #options {
+        margin-top: 10vh;
+        text-align: center;
       }
     </style>
 
     <script>
-      let colors = ["red", "grey", "yellow", "coral", "lime", "crimson", "orange", "cornflowerblue", "darkkhaki" ];
+      var useColors = true;
+      let colors = [
+        "red",
+        "grey",
+        "yellow",
+        "coral",
+        "lime",
+        "crimson",
+        "orange",
+        "cornflowerblue",
+        "darkkhaki",
+      ];
+      let nonColors = ["#FFF", "#F3F3F3"];
       setInterval(() => {
         let d = new Date();
         var s =
@@ -16,12 +36,21 @@
           ":" +
           String(d.getMilliseconds()).padStart(3, "0");
         document.getElementById("clock").innerHTML = s;
+
+        let c = useColors ? colors : nonColors;
         document.body.style.backgroundColor =
-          colors[Math.floor(Date.now() / 1000) % colors.length];
-      }, 1 / 60);
+          c[Math.floor(Date.now() / 1000) % c.length];
+      }, 20);
+
+      function toggleColors() {
+        useColors = !useColors;
+      }
     </script>
   </head>
   <body>
     <div id="clock"></div>
+    <div id="options">
+      <button onclick="toggleColors()">Toggle Colors / BW</button>
+    </div>
   </body>
 </html>
