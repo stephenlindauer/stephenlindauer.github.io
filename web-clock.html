@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <style>
+      #clock {
+        font-size: 180;
+        font-weight: bold;
+      }
+    </style>
+
+    <script>
+      let colors = ["red", "grey", "yellow", "coral", "lime", "crimson", "orange", "cornflowerblue", "darkkhaki" ];
+      setInterval(() => {
+        let d = new Date();
+        var s =
+          d.toLocaleTimeString().replace(/ [AP]M/, "") +
+          ":" +
+          String(d.getMilliseconds()).padStart(3, "0");
+        document.getElementById("clock").innerHTML = s;
+        document.body.style.backgroundColor =
+          colors[Math.floor(Date.now() / 1000) % colors.length];
+      }, 1 / 60);
+    </script>
+  </head>
+  <body>
+    <div id="clock"></div>
+  </body>
+</html>
